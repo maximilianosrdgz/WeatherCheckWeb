@@ -5,6 +5,7 @@ import com.weatherCheckWeb.Domain.ExtendedForecast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 /**
  * Created by MaxPower on 11/10/2016.
  */
+@Repository
 public class ExtendedForecastDAO {
 
     @Autowired
