@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class ExtendedForecast {
 
-    private ArrayList<Day> extForecast;
+    private ArrayList extForecast;
 
     public ExtendedForecast(){
     }

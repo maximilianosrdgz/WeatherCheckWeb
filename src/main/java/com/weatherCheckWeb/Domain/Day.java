@@ -1,6 +1,5 @@
 package com.weatherCheckWeb.Domain;
 
-import java.time.DayOfWeek;
 import java.util.Date;
 
 /**
@@ -8,21 +7,21 @@ import java.util.Date;
  */
 public class Day {
 
-    private DayOfWeek day;
+    private String day;
     private Date date;
     private float maxTemp;
     private float minTemp;
     private String description;
 
     public Day(){
-        day = DayOfWeek.MONDAY;
+        day = "";
         date = null;
         maxTemp = 0;
         minTemp = 0;
         description = "";
     }
 
-    public Day(DayOfWeek day, Date date, float maxTemp, float minTemp, String description) {
+    public Day(String day, Date date, float maxTemp, float minTemp, String description) {
         this.day = day;
         this.date = date;
         this.maxTemp = maxTemp;
@@ -46,11 +45,11 @@ public class Day {
         this.minTemp = minTemp;
     }
 
-    public DayOfWeek getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(DayOfWeek day) {
+    public void setDay(String day) {
         this.day = day;
     }
 

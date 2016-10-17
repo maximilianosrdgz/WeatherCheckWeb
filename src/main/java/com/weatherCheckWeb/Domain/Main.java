@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class Main {
         String desc, count, cit, reg;
         float hum, pres, vis, maxT, minT, spd, dir;
         ArrayList<Day> extF = new ArrayList<Day>(10);
-        DayOfWeek d;
+        String d;
         Date dt;
         Calendar cal = Calendar.getInstance();
 
@@ -75,7 +74,7 @@ public class Main {
         //Day
         System.out.println("Day of the Week: ");
         System.out.println("Friday");
-        d = DayOfWeek.FRIDAY;
+        d = "friday";
         System.out.println("Date: Today");
         dt = cal.getTime();
         System.out.println("Max Temp: ");

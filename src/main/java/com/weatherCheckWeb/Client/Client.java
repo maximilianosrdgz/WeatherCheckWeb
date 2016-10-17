@@ -1,4 +1,4 @@
-package com.weatherCheckWeb.Resource;
+package com.weatherCheckWeb.Client;
 
 import org.springframework.stereotype.Component;
 

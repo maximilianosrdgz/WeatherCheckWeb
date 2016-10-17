@@ -2,14 +2,13 @@ package com.weatherCheckWeb.Builder;
 
 import com.weatherCheckWeb.Domain.Day;
 
-import java.time.DayOfWeek;
 import java.util.Date;
 
 /**
  * Created by MaxPower on 04/10/2016.
  */
 public final class DayBuilder {
-    private DayOfWeek day;
+    private String day;
     private Date date;
     private float maxTemp;
     private float minTemp;
@@ -22,7 +21,7 @@ public final class DayBuilder {
         return new DayBuilder();
     }
 
-    public DayBuilder withDay(DayOfWeek day) {
+    public DayBuilder withDay(String day) {
         this.day = day;
         return this;
     }

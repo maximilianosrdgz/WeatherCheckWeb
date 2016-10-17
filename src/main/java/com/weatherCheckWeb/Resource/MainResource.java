@@ -16,16 +16,24 @@ import javax.ws.rs.Produces;
 @Path("/weather")
 public class MainResource {
 
-    @Autowired
+    //@Autowired
     private WeatherService weatherService;
 
     @GET
     @Path("/getWeather/{city}")
     @Produces("text/plain")
-    public void getWeather(@PathParam("city") String city) {
+    public String getWeather(@PathParam("city") String city) {
 
-        weatherService.getYahooWeatherJson(city);
+        //weatherService.getYahooWeatherJson(city);
+        return city;
 
+    }
+
+    @GET
+    @Path("/echo/{input}")
+    @Produces("text/plain")
+    public String echo(@PathParam("input") String input) {
+        return input;
     }
 
     /*

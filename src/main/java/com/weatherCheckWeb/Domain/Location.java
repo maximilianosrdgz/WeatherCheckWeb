@@ -1,6 +1,5 @@
 package com.weatherCheckWeb.Domain;
 
-import java.time.LocalTime;
 
 /**
  * Created by MaxPower on 24/09/2016.
