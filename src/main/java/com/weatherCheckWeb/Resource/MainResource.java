@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import java.io.IOException;
 
 /**
  * Created by MaxPower on 15/10/2016.
@@ -16,16 +17,15 @@ import javax.ws.rs.Produces;
 @Path("/weather")
 public class MainResource {
 
-    //@Autowired
+    @Autowired
     private WeatherService weatherService;
 
     @GET
-    @Path("/getWeather/{city}")
+    @Path("/getWeather/{city}/{region}")
     @Produces("text/plain")
-    public String getWeather(@PathParam("city") String city) {
+    public String getWeather(@PathParam("city") String city, @PathParam("region") String region) throws IOException {
 
-        //weatherService.getYahooWeatherJson(city);
-        return city;
+        return weatherService.getYahooWeatherJson(city, region);
 
     }
 
@@ -42,6 +42,11 @@ public class MainResource {
     3. Lo que me devuelve se lo paso al proxy
     3. Mi proxy va tomando los datos del JSON con alguna lib JSUP (se agrega al pom), lo transforma
         a mis objetos modelados y los guarda en la DB
+
+    ------------------PREGUNTAR EN DAILY------------------
+    Usar @Autowired en Builders?
+    Jackson?
+    Client Interface?
     */
 
 }

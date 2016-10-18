@@ -48,7 +48,7 @@ public class Main {
         float hum, pres, vis, maxT, minT, spd, dir;
         ArrayList<Day> extF = new ArrayList<Day>(10);
         String d;
-        Date dt;
+        String dt;
         Calendar cal = Calendar.getInstance();
 
         //OBJECTS CREATION
@@ -76,7 +76,7 @@ public class Main {
         System.out.println("Friday");
         d = "friday";
         System.out.println("Date: Today");
-        dt = cal.getTime();
+        dt = cal.getTime().toString();
         System.out.println("Max Temp: ");
         maxT = scannIn.nextFloat();
         System.out.println("Min Temp: ");

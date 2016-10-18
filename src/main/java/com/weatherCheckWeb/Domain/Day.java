@@ -1,6 +1,5 @@
 package com.weatherCheckWeb.Domain;
 
-import java.util.Date;
 
 /**
  * Created by MaxPower on 24/09/2016.
@@ -8,7 +7,7 @@ import java.util.Date;
 public class Day {
 
     private String day;
-    private Date date;
+    private String date;
     private float maxTemp;
     private float minTemp;
     private String description;
@@ -21,7 +20,7 @@ public class Day {
         description = "";
     }
 
-    public Day(String day, Date date, float maxTemp, float minTemp, String description) {
+    public Day(String day, String date, float maxTemp, float minTemp, String description) {
         this.day = day;
         this.date = date;
         this.maxTemp = maxTemp;
@@ -53,11 +52,11 @@ public class Day {
         this.day = day;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
