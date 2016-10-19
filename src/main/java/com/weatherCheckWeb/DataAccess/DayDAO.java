@@ -20,7 +20,6 @@ public class DayDAO {
 
     public void save(Day d, int recordCount){
 
-        //mySQLCon = MySQLConnection.getInstance();
         Statement stmtInsert;
 
         try{
@@ -31,24 +30,18 @@ public class DayDAO {
 
             insert = "insert into Descriptions (description)\n" +
                     "values ('"+d.getDescription()+"')";
-            System.out.println(insert);
             stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
 
             //INSERT WEEKDAYS
             insert = "insert into WeekDays (weekDay)\n" +
-                    "values ('"+d.getDay().toString()+"')";
-            System.out.println(insert);
+                    "values ('"+d.getDay()+"')";
             stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
 
             //INSERT DAYS
             insert = "insert into Days (date, idWeekDay, maxTemp, minTemp, idDescription)\n" +
-                    "values ('2016/01/01', "+recordCount+", "+d.getMaxTemp()+
+                    "values ('"+d.getDate()+"', "+recordCount+", "+d.getMaxTemp()+
                     ", "+d.getMinTemp()+", "+recordCount+")";
-            System.out.println(insert);
             stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
 
             stmtInsert.close();
         }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by MaxPower on 17/10/2016.
  */
 @Component
-public class Proxy {
+public class ForecastProxy {
     //Metodo que devuelve un Forecast y recibe un objeto de la librería que transforma JSONs
 
     public Forecast mapForecast(JSONObject jsonObject){
@@ -58,7 +58,7 @@ public class Proxy {
                         .withDate(jsonArrayExtendedForecast.getJSONObject(i).getString("date"))
                         .withDescription(jsonArrayExtendedForecast.getJSONObject(i).getString("text"))
                         .withMaxTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")))
-                        .withMinTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")))
+                        .withMinTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("low")))
                         .build();
                 extF.add(day);
             }
@@ -67,7 +67,7 @@ public class Proxy {
                     .withDate(jsonArrayExtendedForecast.getJSONObject(i).getString("date"))
                     .withDescription(jsonArrayExtendedForecast.getJSONObject(i).getString("text"))
                     .withMaxTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")))
-                    .withMinTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")))
+                    .withMinTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("low")))
                     .build());
         }
 

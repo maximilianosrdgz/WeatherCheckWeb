@@ -20,7 +20,6 @@ public class WindDAO {
 
     public void save(Wind wind, int recordCount){
 
-        //mySQLCon = MySQLConnection.getInstance();
         Statement stmtInsert;
 
         try{
@@ -31,9 +30,7 @@ public class WindDAO {
             //INSERT WINDDATAS
             insert = "insert into WindDatas (speed, direction)\n" +
                     "values ("+wind.getSpeed()+", "+wind.getDirection()+")";
-            System.out.println(insert);
             stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
 
             stmtInsert.close();
         }

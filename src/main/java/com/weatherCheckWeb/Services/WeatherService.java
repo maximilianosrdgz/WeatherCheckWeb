@@ -1,6 +1,9 @@
 package com.weatherCheckWeb.Services;
 
+import com.weatherCheckWeb.DBConfig.MySQLConnection;
+import com.weatherCheckWeb.DataAccess.*;
 import com.weatherCheckWeb.Domain.Forecast;
+import com.weatherCheckWeb.WeatherProxy.ForecastProxy;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -15,6 +18,10 @@ import org.springframework.cglib.proxy.Proxy;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by MaxPower on 17/10/2016.
@@ -28,14 +35,28 @@ public class WeatherService {
     private static final String URL_END = "\")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     @Autowired
-    public Proxy proxy;
+    private ForecastProxy forecastProxy;
     private OkHttpClient client = new OkHttpClient();
 
-    //select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="nome, ak")
+    @Autowired
+    private MySQLConnection mySQLConnection;
+
+    @Autowired
+    private LocationDAO locationDAO;
+    @Autowired
+    private DayDAO dayDAO;
+    @Autowired
+    private AtmosphereDAO atmosphereDAO;
+    @Autowired
+    private WindDAO windDAO;
+    @Autowired
+    private ForecastDAO forecastDAO;
+    @Autowired
+    private ExtendedForecastDAO extendedForecastDAO;
+
 
     public String getYahooWeatherJson(String city, String region) throws IOException{
         String finalUrl = URL_START + city + URL_MID + region + URL_END;
-        //Call OKHTTP ---> Arroja Response, dentro de Response hay un String grandote con el JSON
 
         Request request = new Request.Builder()
                 .url(finalUrl)
@@ -46,20 +67,59 @@ public class WeatherService {
 
         JSONObject jsonObject = new JSONObject(jsonString);
 
-        String forecast;
+        Forecast forecast = forecastProxy.mapForecast(jsonObject);
 
-        return city;
-        //proxy.mapForecast(jsonObject);
+        String stringForecast = forecast.toString();
 
-        //Document doc = Jsoup.connect()
-        //La lib lo parsea y me devuelve un objeto de la librería JSUP ponele
+        saveWeather(forecast);
 
-        //proxy.mapForecast(doc); ---> Devuelve Forecast
-        //saveWeather(proxy.mapForecast(doc));
+        return stringForecast;
     }
 
     public void saveWeather(Forecast forecast){
-        //Otro método que invoque a los DAO a partir del Forecast que devuelve proxy.mapForecast(JSUP);
+
+        int recordCount = getRecordCount() + 1;
+
+        locationDAO.save(forecast.getLocation(), recordCount);
+
+        dayDAO.save(forecast.getDay(), recordCount);
+
+        atmosphereDAO.save(forecast.getAtmosphere(), recordCount);
+
+        windDAO.save(forecast.getWind(), recordCount);
+
+        forecastDAO.save(forecast, recordCount);
+
+        extendedForecastDAO.save(forecast.getExtendedForecast(), recordCount);
+
+
+        try {
+            mySQLConnection.getCon().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getRecordCount(){
+
+        int recordCount = 0;
+
+        try {
+
+            Statement stmtCount = mySQLConnection.getCon().createStatement();
+            String selCount = "select count(*) 'recordCount' from Forecasts";
+            ResultSet rsCount = stmtCount.executeQuery(selCount);
+            while(rsCount.next()){
+                recordCount = rsCount.getInt("recordCount");
+            }
+            rsCount.close();
+            stmtCount.close();
+        }
+
+        catch(Exception e){
+        }
+
+        return recordCount;
     }
 
 

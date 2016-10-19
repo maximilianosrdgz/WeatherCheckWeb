@@ -14,7 +14,9 @@
     <context:property-placeholder/>
     <context:annotation-config/>
     <context:component-scan base-package="com.weatherCheckWeb.DBConfig,
-    com.weatherCheckWeb.DataAccess, com.weatherCheckWeb.Client, com.weatherCheckWeb.Resource, com.weatherCheckWeb.Services" />
+    com.weatherCheckWeb.DataAccess, com.weatherCheckWeb.Client,
+    com.weatherCheckWeb.Resource, com.weatherCheckWeb.Services,
+    com.weatherCheckWeb.WeatherProxy" />
 
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>

@@ -1,6 +1,7 @@
 package com.weatherCheckWeb.DataAccess;
 
 import com.weatherCheckWeb.DBConfig.MySQLConnection;
+import com.weatherCheckWeb.Domain.Day;
 import com.weatherCheckWeb.Domain.ExtendedForecast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,22 +22,27 @@ public class ExtendedForecastDAO {
 
     public void save(ExtendedForecast extFore, int recordCount){
 
-        //mySQLCon = MySQLConnection.getInstance();
         Statement stmtInsert;
+        String insert;
 
         try{
 
             stmtInsert = mySQLCon.getCon().createStatement();
-            String insert;
 
             //INSERT EXTENDEDFORECASTS
-            insert = "insert into ExtendedForecasts (idForecast, idDay)\n" +
-                    "values ("+recordCount+", "+recordCount+")";
-            System.out.println(insert);
-            stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
+
+            for(int i=0; i<10; i++){
+
+                Day d = (Day)extFore.getExtForecast().get(i);
+                insert = "insert into ExtendedForecasts(idForecast, date, weekDay, maxTemp, minTemp, description)\n" +
+                        "values("+recordCount+", '"+d.getDate()+"', '"+d.getDay()+"', "+d.getMaxTemp()+", "+
+                        d.getMinTemp()+", '"+d.getDescription()+"')";
+                stmtInsert.executeUpdate(insert);
+
+            }
 
             stmtInsert.close();
+            mySQLCon.getCon().close();
         }
         catch(Exception e){
 

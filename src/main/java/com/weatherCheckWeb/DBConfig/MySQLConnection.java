@@ -12,15 +12,8 @@ import java.sql.SQLException;
  */
 @Component
 public class MySQLConnection {
-    //private static MySQLConnection ourInstance;
+
     private Connection con;
-    /*
-    public static MySQLConnection getInstance() {
-        if(ourInstance == null){
-            ourInstance = new MySQLConnection();
-        }
-        return ourInstance;
-    }*/
 
     private MySQLConnection() {
 
@@ -28,7 +21,6 @@ public class MySQLConnection {
 
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Connected");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

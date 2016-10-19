@@ -21,7 +21,6 @@ public class AtmosphereDAO {
 
     public void save(Atmosphere atmos, int recordCount){
 
-        //mySQLCon = MySQLConnection.getInstance();
         Statement stmtInsert;
 
         try{
@@ -33,9 +32,7 @@ public class AtmosphereDAO {
             insert = "insert into AtmosphericDatas (humidity, preasure, visibility)\n" +
                     "values ("+atmos.getHumidity()+", "+atmos.getPressure()+
                     ", "+atmos.getVisibility()+")";
-            System.out.println(insert);
             stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
 
             stmtInsert.close();
         }

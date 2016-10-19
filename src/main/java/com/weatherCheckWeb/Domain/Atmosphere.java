@@ -45,6 +45,8 @@ public class Atmosphere {
 
     @Override
     public String toString(){
-        return "";
+        return "Humidity: " + humidity +
+                "\nPressure: " + pressure +
+                "\nVisibility: " + visibility;
     }
 }

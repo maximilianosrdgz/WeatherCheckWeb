@@ -20,7 +20,6 @@ public class ForecastDAO {
 
     public void save(Forecast fore, int recordCount){
 
-        //mySQLCon = MySQLConnection.getInstance();
         Statement stmtInsert;
 
         try{
@@ -31,9 +30,7 @@ public class ForecastDAO {
             //INSERT FORECASTS
             insert = "insert into Forecasts (idCity, idDay, idAtmosphericData, idWindData)\n" +
                     "values ("+recordCount+", "+recordCount+", "+recordCount+", "+recordCount+")";
-            System.out.println(insert);
             stmtInsert.executeUpdate(insert);
-            System.out.println("Data added");
 
             stmtInsert.close();
         }
