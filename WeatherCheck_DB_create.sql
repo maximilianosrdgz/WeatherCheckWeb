@@ -85,7 +85,7 @@ CREATE TABLE WeekDays (
 CREATE TABLE WindDatas (
     idWindData int  NOT NULL AUTO_INCREMENT,
     speed decimal(5,2)  NOT NULL,
-    direction decimal(4,2)  NOT NULL,
+    direction decimal(6,2)  NOT NULL,
     CONSTRAINT WindDatas_pk PRIMARY KEY  (idWindData)
 );
 
