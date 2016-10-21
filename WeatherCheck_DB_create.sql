@@ -4,7 +4,7 @@
 -- tables
 -- Table: AtmosphericDatas
 CREATE TABLE AtmosphericDatas (
-    idAtmosphericData int  NOT NULL IDENTITY(0, 1),
+    idAtmosphericData int  NOT NULL AUTO_INCREMENT,
     humidity decimal(4,2)  NOT NULL,
     preasure decimal(6,2)  NOT NULL,
     visibility decimal(4,2)  NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE AtmosphericDatas (
 
 -- Table: Cities
 CREATE TABLE Cities (
-    idCity int  NOT NULL IDENTITY(0, 1),
+    idCity int  NOT NULL AUTO_INCREMENT,
     city varchar(30)  NOT NULL,
     idCountry int  NOT NULL,
     CONSTRAINT Cities_pk PRIMARY KEY  (idCity)
@@ -21,7 +21,7 @@ CREATE TABLE Cities (
 
 -- Table: Countries
 CREATE TABLE Countries (
-    idCountry int  NOT NULL IDENTITY(0, 1),
+    idCountry int  NOT NULL AUTO_INCREMENT,
     country varchar(30)  NOT NULL,
     idRegion int  NOT NULL,
     CONSTRAINT Countries_pk PRIMARY KEY  (idCountry)
@@ -29,7 +29,7 @@ CREATE TABLE Countries (
 
 -- Table: Days
 CREATE TABLE Days (
-    idDay int  NOT NULL IDENTITY(0, 1),
+    idDay int  NOT NULL AUTO_INCREMENT,
     date varchar(30)  NOT NULL,
     idWeekDay int  NOT NULL,
     maxTemp int  NOT NULL,
@@ -40,14 +40,14 @@ CREATE TABLE Days (
 
 -- Table: Descriptions
 CREATE TABLE Descriptions (
-    idDescription int  NOT NULL IDENTITY(0, 1),
+    idDescription int  NOT NULL AUTO_INCREMENT,
     description varchar(50)  NOT NULL,
     CONSTRAINT Descriptions_pk PRIMARY KEY  (idDescription)
 );
 
 -- Table: ExtendedForecasts
 CREATE TABLE ExtendedForecasts (
-    idExtendedForecast int  NOT NULL IDENTITY(0, 1),
+    idExtendedForecast int  NOT NULL AUTO_INCREMENT,
     idForecast int  NOT NULL,
     date varchar(30)  NOT NULL,
     weekDay varchar(20)  NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE ExtendedForecasts (
 
 -- Table: Forecasts
 CREATE TABLE Forecasts (
-    idForecast int  NOT NULL IDENTITY(0, 1),
+    idForecast int  NOT NULL AUTO_INCREMENT,
     idCity int  NOT NULL,
     idDay int  NOT NULL,
     idAtmosphericData int  NOT NULL,
@@ -69,21 +69,21 @@ CREATE TABLE Forecasts (
 
 -- Table: Regions
 CREATE TABLE Regions (
-    idRegion int  NOT NULL IDENTITY(0, 1),
+    idRegion int  NOT NULL AUTO_INCREMENT,
     region varchar(30)  NOT NULL,
     CONSTRAINT Regions_pk PRIMARY KEY  (idRegion)
 );
 
 -- Table: WeekDays
 CREATE TABLE WeekDays (
-    idWeekDay int  NOT NULL IDENTITY(0, 1),
+    idWeekDay int  NOT NULL AUTO_INCREMENT,
     weekDay varchar(20)  NOT NULL,
     CONSTRAINT WeekDays_pk PRIMARY KEY  (idWeekDay)
 );
 
 -- Table: WindDatas
 CREATE TABLE WindDatas (
-    idWindData int  NOT NULL IDENTITY(0, 1),
+    idWindData int  NOT NULL AUTO_INCREMENT,
     speed decimal(5,2)  NOT NULL,
     direction decimal(4,2)  NOT NULL,
     CONSTRAINT WindDatas_pk PRIMARY KEY  (idWindData)
