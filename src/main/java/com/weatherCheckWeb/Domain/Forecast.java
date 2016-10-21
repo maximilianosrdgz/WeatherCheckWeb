@@ -64,10 +64,16 @@ public class Forecast {
 
     @Override
     public String toString(){
-        return "Forecast: "+atmosphere.toString()+
-                "\nCurrent Day: "+ day.toString()+
-                "\nExtended Forecast: "+extendedForecast.toString()+
-                "\nLocation: "+location.toString()+
-                "\nWind: "+wind.toString();
+        return "Forecast:" +
+                "\nLocation: " +
+                "\n"+location.toString()+
+                "\nCurrent Day:" +
+                "\n"+ day.toString()+
+                "\nAtmosphere Info:" +
+                "\n"+atmosphere.toString()+
+                "\nWind:" +
+                "\n"+wind.toString() +
+                "\nExtended Forecast: " +
+                "\n"+extendedForecast.toString();
     }
 }

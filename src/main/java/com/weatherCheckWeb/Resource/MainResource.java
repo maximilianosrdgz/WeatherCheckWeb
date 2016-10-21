@@ -36,17 +36,4 @@ public class MainResource {
         return input;
     }
 
-    /*
-    1. Mi endpoint toma el parametro city y se lo pasa a un service
-    2. Dentro de service llamo al endpoint de Yahoo con OKHTTP
-    3. Lo que me devuelve se lo paso al proxy
-    3. Mi proxy va tomando los datos del JSON con alguna lib JSUP (se agrega al pom), lo transforma
-        a mis objetos modelados y los guarda en la DB
-
-    ------------------PREGUNTAR EN DAILY------------------
-    Usar @Autowired en Builders?
-    Jackson?
-    Client Interface?
-    */
-
 }

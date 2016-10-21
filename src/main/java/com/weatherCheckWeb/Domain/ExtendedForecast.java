@@ -26,6 +26,6 @@ public class ExtendedForecast {
 
     @Override
     public String toString(){
-        return "Extended forecast: "+extForecast.toString();
+        return extForecast.toString();
     }
 }

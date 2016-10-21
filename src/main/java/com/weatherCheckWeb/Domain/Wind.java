@@ -34,7 +34,7 @@ public class Wind {
 
     @Override
     public String toString(){
-        return "Wind Speed: "+speed+
-                "Wind Direction: "+direction+"º";
+        return  "Speed: " + speed +
+                "\nDirection: "+ direction + "º";
     }
 }

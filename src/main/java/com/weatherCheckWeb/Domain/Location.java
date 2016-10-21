@@ -45,8 +45,8 @@ public class Location {
 
     @Override
     public String toString(){
-        return "City: "+city+
-                "\nCountry: "+country+
-                "\nRegion: "+region;
+        return "City: " + city +
+                "\nCountry: " + country +
+                "\nRegion: " + region;
     }
 }

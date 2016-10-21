@@ -70,11 +70,11 @@ public class Day {
 
     @Override
     public String toString(){
-        return "Day: "+day.toString()+
-                "\nDate: "+date.toString()+
-                "\nMax Temperature: "+maxTemp+
-                "\nMin Temperature: "+minTemp+
-                "\nDescription: "+description;
+        return "\n" + day.toString() +
+                "\nDate: "+ date.toString() +
+                "\nMax Temperature: " + maxTemp + " C" +
+                "\nMin Temperature: " + minTemp + " C" +
+                "\nDescription: "+ description;
     }
 
 

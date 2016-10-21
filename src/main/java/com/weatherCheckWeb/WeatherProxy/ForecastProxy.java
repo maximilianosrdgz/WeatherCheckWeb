@@ -1,9 +1,11 @@
 package com.weatherCheckWeb.WeatherProxy;
 
+import com.weatherCheckWeb.Adapter.TemperatureAdapter;
 import com.weatherCheckWeb.Builder.*;
 import com.weatherCheckWeb.Domain.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,8 +15,11 @@ import java.util.ArrayList;
  */
 @Component
 public class ForecastProxy {
-    //Metodo que devuelve un Forecast y recibe un objeto de la librería que transforma JSONs
 
+    @Autowired
+    private TemperatureAdapter temperatureAdapter;
+
+    //Maps JSONObject into Forecast
     public Forecast mapForecast(JSONObject jsonObject){
 
         Forecast forecast;
@@ -24,11 +29,9 @@ public class ForecastProxy {
         Location location;
         Wind wind;
 
-        String description, country, city, region;
-        float humidity, pressure, visibility, maxTemp, minTemp, speed, direction;
+        String country, city, region;
+        float humidity, pressure, visibility, speed, direction, high, low;
         ArrayList<Day> extF = new ArrayList<Day>(10);
-        String weekDay;
-        String date;
 
         JSONObject jsonQuery = jsonObject.getJSONObject("query");
         JSONObject jsonResults = jsonQuery.getJSONObject("results");
@@ -53,21 +56,31 @@ public class ForecastProxy {
 
         for(int i=0; i<10; i++){
             if(i == 0){
+                //Adapt temperature to Celsius with Adapter Pattern
+                temperatureAdapter.setFahrenheitTemperature(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")));
+                high = temperatureAdapter.getCelsiusTemperature();
+                temperatureAdapter.setFahrenheitTemperature(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("low")));
+                low = temperatureAdapter.getCelsiusTemperature();
                 day = DayBuilder.aDay()
                         .withDay(jsonArrayExtendedForecast.getJSONObject(i).getString("day"))
                         .withDate(jsonArrayExtendedForecast.getJSONObject(i).getString("date"))
                         .withDescription(jsonArrayExtendedForecast.getJSONObject(i).getString("text"))
-                        .withMaxTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")))
-                        .withMinTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("low")))
+                        .withMaxTemp(high)
+                        .withMinTemp(low)
                         .build();
                 extF.add(day);
             }
+            //Adapt temperature to Celsius with Adapter Pattern
+            temperatureAdapter.setFahrenheitTemperature(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")));
+            high = temperatureAdapter.getCelsiusTemperature();
+            temperatureAdapter.setFahrenheitTemperature(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("low")));
+            low = temperatureAdapter.getCelsiusTemperature();
             extF.add(i, DayBuilder.aDay()
                     .withDay(jsonArrayExtendedForecast.getJSONObject(i).getString("day"))
                     .withDate(jsonArrayExtendedForecast.getJSONObject(i).getString("date"))
                     .withDescription(jsonArrayExtendedForecast.getJSONObject(i).getString("text"))
-                    .withMaxTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("high")))
-                    .withMinTemp(Float.valueOf(jsonArrayExtendedForecast.getJSONObject(i).getString("low")))
+                    .withMaxTemp(high)
+                    .withMinTemp(low)
                     .build());
         }
 

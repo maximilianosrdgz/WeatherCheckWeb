@@ -1,6 +1,5 @@
 package com.weatherCheckWeb.Domain;
 
-import com.weatherCheckWeb.Builder.*;
 /**
  * Created by MaxPower on 23/09/2016.
  */
@@ -45,8 +44,8 @@ public class Atmosphere {
 
     @Override
     public String toString(){
-        return "Humidity: " + humidity +
-                "\nPressure: " + pressure +
-                "\nVisibility: " + visibility;
+        return "Humidity: " + humidity + "%" +
+                "\nPressure: " + pressure + " hPa" +
+                "\nVisibility: " + visibility + " mts.";
     }
 }

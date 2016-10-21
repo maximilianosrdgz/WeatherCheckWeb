@@ -4,11 +4,8 @@ import com.weatherCheckWeb.DBConfig.MySQLConnection;
 import com.weatherCheckWeb.Domain.Day;
 import com.weatherCheckWeb.Domain.ExtendedForecast;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.Statement;
 
 /**

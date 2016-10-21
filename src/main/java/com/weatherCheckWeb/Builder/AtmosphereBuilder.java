@@ -32,8 +32,8 @@ public final class AtmosphereBuilder {
         return this;
     }
 
-    public Atmosphere build() {                   //@Autowired
-        Atmosphere atmosphere = new Atmosphere(); //Atmosphere atmosphere
+    public Atmosphere build() {
+        Atmosphere atmosphere = new Atmosphere();
         atmosphere.setHumidity(humidity);
         atmosphere.setPressure(pressure);
         atmosphere.setVisibility(visibility);

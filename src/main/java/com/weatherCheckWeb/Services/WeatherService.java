@@ -7,18 +7,11 @@ import com.weatherCheckWeb.WeatherProxy.ForecastProxy;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.codehaus.jackson.map.JsonSerializer;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.proxy.Proxy;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,7 +22,6 @@ import java.sql.Statement;
 @Component
 public class WeatherService {
 
-    //Si no anda puede ser por la \
     private static final String URL_START = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D\"";
     private static final String URL_MID = "%2C%20";
     private static final String URL_END = "\")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
@@ -56,8 +48,10 @@ public class WeatherService {
 
 
     public String getYahooWeatherJson(String city, String region) throws IOException{
+        //Build the URL with the arguments
         String finalUrl = URL_START + city + URL_MID + region + URL_END;
 
+        //Get response from Yahoo endpoint
         Request request = new Request.Builder()
                 .url(finalUrl)
                 .build();
@@ -65,14 +59,18 @@ public class WeatherService {
 
         String jsonString = response.body().string();
 
+        //Creates JSONObject with the JSON in String taken from the body of the response
         JSONObject jsonObject = new JSONObject(jsonString);
 
+        //Transform JSONObject into Forecast with ForecastProxy Class
         Forecast forecast = forecastProxy.mapForecast(jsonObject);
 
         String stringForecast = forecast.toString();
 
+        //DAO call
         saveWeather(forecast);
 
+        //Prints Forecast info on screen
         return stringForecast;
     }
 
@@ -100,6 +98,7 @@ public class WeatherService {
         }
     }
 
+    //Gets the current number of forecasts recorded in the DB
     public int getRecordCount(){
 
         int recordCount = 0;
