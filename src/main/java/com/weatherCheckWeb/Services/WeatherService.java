@@ -90,12 +90,6 @@ public class WeatherService {
 
         extendedForecastDAO.save(forecast.getExtendedForecast(), recordCount);
 
-        /*
-        try {
-            mySQLConnection.getCon().close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
     //Gets the current number of forecasts recorded in the DB
