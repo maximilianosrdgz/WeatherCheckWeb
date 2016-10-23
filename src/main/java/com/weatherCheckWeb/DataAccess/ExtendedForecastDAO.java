@@ -39,7 +39,7 @@ public class ExtendedForecastDAO {
             }
 
             stmtInsert.close();
-            mySQLCon.getCon().close();
+            //mySQLCon.getCon().close();
         }
         catch(Exception e){
 
